@@ -368,6 +368,10 @@
         let lastTapTime = 0;
         const doubleTapDelay = 300;
 
+        // Track background assignments for Q+R and H+A
+        let qrBackground = 'linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet)';
+        let haBackground = 'science-bg';
+
         const isMobile = /Mobi|Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
         window.addEventListener('load', () => {
@@ -426,6 +430,18 @@
                 setTimeout(() => {
                     body.classList.remove('rotate-animation');
                 }, 4000);
+                errorMessage.style.display = 'none';
+            } else if (searchText === "ダサすぎて草" || searchText === "ダサすぎてくさ") {
+                qrBackground = 'linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet)';
+                body.classList.remove('science-bg');
+                body.style.background = qrBackground;
+                body.style.backgroundColor = '';
+                errorMessage.style.display = 'none';
+            } else if (searchText === "HA") {
+                haBackground = 'science-bg';
+                body.classList.add('science-bg');
+                body.style.background = '';
+                body.style.backgroundColor = '';
                 errorMessage.style.display = 'none';
             } else if (searchText === "赤") {
                 body.classList.remove('science-bg');
@@ -508,7 +524,7 @@
 
             if (isQPressed && isRPressed) {
                 body.classList.remove('science-bg');
-                body.style.background = 'linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet)';
+                body.style.background = qrBackground;
                 body.style.backgroundColor = '';
             }
 
@@ -519,9 +535,11 @@
             }
 
             if (isHPressed && isAPressed) {
-                body.classList.add('science-bg');
-                body.style.background = '';
-                body.style.backgroundColor = '';
+                if (haBackground === 'science-bg') {
+                    body.classList.add('science-bg');
+                    body.style.background = '';
+                    body.style.backgroundColor = '';
+                }
             }
         });
 
@@ -546,7 +564,7 @@
                 const currentTime = new Date().getTime();
                 if (currentTime - lastTapTime < doubleTapDelay) {
                     body.classList.remove('science-bg');
-                    body.style.background = 'linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet)';
+                    body.style.background = qrBackground;
                     body.style.backgroundColor = '';
                 }
                 lastTapTime = currentTime;
