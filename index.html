@@ -10,37 +10,43 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            background-color: #0d0d0d; /* ダークグレーの背景 */
+            padding-top: 50px; /* Adjusted for larger header font */
+            background-color: #0d0d0d;
             transition: background-color 0.5s;
             text-align: center;
-            font-family: 'Orbitron', sans-serif; /* 近未来的なフォント */
+            font-family: 'Orbitron', sans-serif;
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             width: 100%;
-            position: absolute; /* 上部に固定 */
-            top: 20px; /* 上からの位置 */
+            max-width: 600px; /* Limit header width for compactness */
+            margin: 0 auto; /* Center the header */
+            position: fixed;
+            top: 0;
             left: 0;
-            padding: 0 20px; /* 左右のパディング */
-            color: #00ffcc; /* シアン色 */
-            font-size: 18px; /* フォントサイズ */
+            right: 0;
+            padding: 5px 10px; /* Reduced padding for tighter look */
+            color: #00ffcc;
+            font-size: 18px; /* Reverted to original font size */
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
         }
 
         .date-display, .time-display {
-            color: white; /* テキストを白に */
+            color: white;
         }
 
         h1 {
-            color: #00ffcc; /* 明るいシアン色 */
+            color: #00ffcc;
             font-weight: bold;
-            font-size: 64px; /* 大きなフォントサイズ */
+            font-size: 64px;
             margin: 20px 0;
-            text-shadow: 0 0 20px rgba(0, 255, 204, 0.8); /* より強いテキストの影 */
-            animation: glow 1.5s infinite alternate; /* 輝きのアニメーション */
+            text-shadow: 0 0 20px rgba(0, 255, 204, 0.8);
+            animation: glow 1.5s infinite alternate;
         }
 
         @keyframes glow {
@@ -68,75 +74,75 @@
         #searchInput {
             padding: 15px;
             font-size: 24px;
-            border-radius: 25px; /* より丸いボーダー */
-            border: 2px solid #00ffcc; /* シアンのボーダー */
+            border-radius: 25px;
+            border: 2px solid #00ffcc;
             width: 320px;
             box-shadow: 0 4px 30px rgba(0, 255, 204, 0.5);
-            background-color: #1a1a1a; /* さらにダークな背景 */
-            color: white; /* テキストを白に */
+            background-color: #1a1a1a;
+            color: white;
             transition: box-shadow 0.3s;
         }
 
         #searchInput:focus {
             box-shadow: 0 0 20px rgba(0, 255, 204, 1);
-            outline: none; /* フォーカス時のアウトラインを削除 */
+            outline: none;
         }
 
         #searchButton {
             padding: 15px 30px;
             font-size: 24px;
             cursor: pointer;
-            border-radius: 25px; /* より丸いボーダー */
+            border-radius: 25px;
             border: none;
-            background-color: #00ffcc; /* シアン */
+            background-color: #00ffcc;
             color: black;
             box-shadow: 0 4px 30px rgba(0, 255, 204, 0.5);
             transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-            margin-top: 10px; /* ボタンの上に隙間を追加 */
+            margin-top: 10px;
         }
 
         #searchButton:hover {
-            background-color: #00e6b3; /* 少し濃いシアン */
-            transform: scale(1.05); /* ホバー時にスケールアップ */
-            box-shadow: 0 0 20px rgba(0, 255, 204, 1); /* ホバー時の影 */
+            background-color: #00e6b3;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 1);
         }
 
         .error-message {
             font-size: 24px;
-            color: #ff3366; /* 明るいピンク */
+            color: #ff3366;
             display: none;
         }
 
         .quiz {
-            margin-top: 20px; /* 検索バーの下に隙間を作る */
+            margin-top: 20px;
             font-size: 20px;
-            color: white; /* テキストを白に */
-            background-color: rgba(0, 0, 0, 0.8); /* 半透明の黒 */
+            color: white;
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 10px;
-            border-radius: 10px;
+            border-radius: 4px;
             box-shadow: 0 2px 10px rgba(0, 255, 204, 0.5);
             transition: transform 0.3s;
         }
 
         .quiz-input {
-            margin-top: 10px; /* クイズと入力部分の隙間 */
+            margin-top: 10px;
         }
 
         #answerInput {
             padding: 10px;
             font-size: 20px;
             border-radius: 10px;
-            border: 2px solid #00ffcc; /* シアンのボーダー */
+            border: 2px solid #00ffcc;
             width: 300px;
             margin-top: 10px;
-            background-color: #2a2a2a; /* さらにダークな背景 */
-            color: white; /* テキストを白に */
+            background-color: #2a2a2a;
+            color: white;
             transition: box-shadow 0.3s;
         }
 
         #answerInput:focus {
             box-shadow: 0 0 20px rgba(0, 255, 204, 1);
-            outline: none; /* フォーカス時のアウトラインを削除 */
+            outline: none;
         }
 
         #checkAnswerButton {
@@ -145,38 +151,26 @@
             cursor: pointer;
             border-radius: 10px;
             border: none;
-            background-color: #00ffcc; /* シアン */
+            background-color: #00ffcc;
             color: black;
             margin-top: 10px;
             transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
         }
 
         #checkAnswerButton:hover {
-            background-color: #00e6b3; /* 少し濃いシアン */
-            transform: scale(1.05); /* ホバー時にスケールアップ */
-            box-shadow: 0 0 20px rgba(0, 255, 204, 1); /* ホバー時の影 */
+            background-color: #00e6b3;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 1);
         }
 
         .result-message, .wrong-message {
             font-size: 20px;
             margin-top: 10px;
-            color: #00ffcc; /* シアン */
+            color: #00ffcc;
         }
 
         .wrong-message {
-            color: #ff3366; /* 明るいピンク */
-        }
-
-        .fact {
-            position: fixed;
-            bottom: 80px;
-            left: 20px;
-            font-size: 18px;
-            color: white; /* テキストを白に */
-            background-color: rgba(0, 0, 0, 0.8); /* 半透明の黒 */
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 255, 204, 0.5);
+            color: #ff3366;
         }
 
         .color-options {
@@ -184,7 +178,8 @@
             bottom: 20px;
             right: 20px;
             font-size: 20px;
-            color: #00ffcc; /* シアン */
+            color: #00ffcc;
+            z-index: 1000;
         }
 
         select {
@@ -192,13 +187,106 @@
             color: #00ffcc;
             border: 2px solid #00ffcc;
             border-radius: 10px;
-            padding: 15px; /* セレクトボックスのパディングを増やす */
-            font-size: 18px; /* フォントサイズを少し大きくする */
+            padding: 15px;
+            font-size: 18px;
+        }
+
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0d0d0d;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-text {
+            color: #00ffcc;
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(0, 255, 204, 0.8);
+            animation: neonPulse 1.5s infinite alternate, typing 2s steps(20) 1;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #00ffcc;
+        }
+
+        @keyframes neonPulse {
+            from {
+                text-shadow: 0 0 10px rgba(0, 255, 204, 0.8), 0 0 20px rgba(0, 255, 204, 0.6);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(0, 255, 204, 1), 0 0 40px rgba(0, 255, 204, 0.8);
+            }
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #00ffcc;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 48px;
+            }
+
+            #searchInput, #answerInput {
+                width: 80%;
+                max-width: 300px;
+            }
+
+            .header {
+                font-size: 16px; /* Reverted to original mobile font size */
+                padding: 5px 8px; /* Tighter padding for mobile */
+                max-width: 90%; /* Slightly narrower on mobile */
+            }
+
+            .loading-text {
+                font-size: 24px;
+            }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet"> <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-text">新感覚な、検索エンジン</div>
+        <div class="spinner"></div>
+    </div>
     <div class="header">
         <div id="dateDisplay" class="date-display"></div>
         <div id="timeDisplay" class="time-display"></div>
@@ -226,11 +314,6 @@
             <option value="white">白</option>
         </select>
     </div>
-    
-    <div class="fact" id="fact">
-        今日は何の日？<br>
-        <span id="eventMessage">...</span>
-    </div>
 
     <script>
         const bgColorSelect = document.getElementById('bgColorSelect');
@@ -238,7 +321,6 @@
         const searchButton = document.getElementById('searchButton');
         const searchInput = document.getElementById('searchInput');
         const errorMessage = document.getElementById('errorMessage');
-        const eventMessage = document.getElementById('eventMessage');
         const quizQuestion = document.getElementById('quizQuestion');
         const answerInput = document.getElementById('answerInput');
         const checkAnswerButton = document.getElementById('checkAnswerButton');
@@ -246,6 +328,7 @@
         const wrongMessage = document.getElementById('wrongMessage');
         const dateDisplay = document.getElementById('dateDisplay');
         const timeDisplay = document.getElementById('timeDisplay');
+        const loadingScreen = document.getElementById('loadingScreen');
 
         let lastQuizIndex = -1;
         let isQPressed = false;
@@ -253,13 +336,23 @@
         let isWPressed = false;
         let isEPressed = false;
         let lastTapTime = 0;
-        const doubleTapDelay = 300; // ダブルタップの最大間隔（ミリ秒）
+        const doubleTapDelay = 300;
 
-        // モバイルデバイスかどうかを判定
+        // モバイルデバイス判定
         const isMobile = /Mobi|Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
+        // ローディング画面を非表示にする
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 2000);
+        });
+
         bgColorSelect.addEventListener('change', function() {
-            body.style.background = this.value; // Reset to solid color, clearing any gradient
+            body.style.background = this.value;
             body.style.backgroundColor = this.value;
         });
 
@@ -297,28 +390,28 @@
             const searchText = searchInput.value.trim();
 
             if (searchText === "HARUOMILABO") {
-                window.open("https://haruomilabo-home.amebaownd.com", "_blank"); // 新規タブで開く
+                window.open("https://haruomilabo-home.amebaownd.com", "_blank");
                 errorMessage.style.display = 'none';
             } else if (searchText === "一回転") {
-                body.classList.add('rotate-animation'); // 回転クラスを追加
+                body.classList.add('rotate-animation');
                 setTimeout(() => {
-                    body.classList.remove('rotate-animation'); // アニメーションが終わったらクラスを削除
-                }, 4000); // 4秒後にクラスを削除
+                    body.classList.remove('rotate-animation');
+                }, 4000);
                 errorMessage.style.display = 'none';
             } else if (searchText === "赤") {
-                body.style.background = 'red'; // Reset to solid color
+                body.style.background = 'red';
                 body.style.backgroundColor = 'red';
                 errorMessage.style.display = 'none';
             } else if (searchText === "青") {
-                body.style.background = 'blue'; // Reset to solid color
+                body.style.background = 'blue';
                 body.style.backgroundColor = 'blue';
                 errorMessage.style.display = 'none';
             } else if (searchText === "黒") {
-                body.style.background = 'black'; // Reset to solid color
+                body.style.background = 'black';
                 body.style.backgroundColor = 'black';
                 errorMessage.style.display = 'none';
             } else if (searchText === "白") {
-                body.style.background = 'white'; // Reset to solid color
+                body.style.background = 'white';
                 body.style.backgroundColor = 'white';
                 errorMessage.style.display = 'none';
             } else {
@@ -333,33 +426,6 @@
                 handleSearch();
             }
         });
-
-        function updateEventMessage() {
-            const today = new Date();
-            const month = today.getMonth() + 1;
-            const day = today.getDate();
-            let message = '';
-
-            if (month === 1 && day === 1) {
-                message = '元日';
-            } else if (month === 2 && day === 14) {
-                message = 'バレンタインデー';
-            } else if (month === 3 && day === 14) {
-                message = 'ホワイトデー';
-            } else if (month === 4 && day === 1) {
-                message = 'エイプリルフール';
-            } else if (month === 5 && day === 5) {
-                message = 'こどもの日';
-            } else if (month === 12 && day === 25) {
-                message = 'クリスマス';
-            } else if (month === 12 && day === 31) {
-                message = '大晦日';
-            } else {
-                message = '特に特別な日ではありません。';
-            }
-
-            eventMessage.textContent = message;
-        }
 
         checkAnswerButton.addEventListener('click', function() {
             const userAnswer = answerInput.value.trim();
@@ -385,14 +451,13 @@
             const today = new Date();
             
             const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-            const dateString = today.toLocaleDateString('ja-JP', options); // 年月日を日本の形式で表示
+            const dateString = today.toLocaleDateString('ja-JP', options);
             dateDisplay.textContent = dateString;
 
-            const timeString = today.toLocaleTimeString('ja-JP'); // 時間を日本の形式で表示
+            const timeString = today.toLocaleTimeString('ja-JP');
             timeDisplay.textContent = timeString;
         }
 
-        // キーダウンイベントでQとR、WとEの同時押しを検出
         document.addEventListener('keydown', function(event) {
             if (event.key.toLowerCase() === 'q') {
                 isQPressed = true;
@@ -406,16 +471,15 @@
 
             if (isQPressed && isRPressed) {
                 body.style.background = 'linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet)';
-                body.style.backgroundColor = ''; // Clear solid background color
+                body.style.backgroundColor = '';
             }
 
             if (isWPressed && isEPressed) {
-                body.style.background = 'linear-gradient(45deg, #ff1493, #00ff00, #ffff00, #ff69b4)'; // ダサい非虹色グラデーション
-                body.style.backgroundColor = ''; // Clear solid background color
+                body.style.background = 'linear-gradient(45deg, #ff1493, #00ff00, #ffff00, #ff69b4)';
+                body.style.backgroundColor = '';
             }
         });
 
-        // キーアップイベントで状態をリセット
         document.addEventListener('keyup', function(event) {
             if (event.key.toLowerCase() === 'q') {
                 isQPressed = false;
@@ -428,26 +492,19 @@
             }
         });
 
-        // モバイルデバイスでのダブルタップ検出
         if (isMobile) {
             document.addEventListener('touchstart', function(event) {
                 const currentTime = new Date().getTime();
                 if (currentTime - lastTapTime < doubleTapDelay) {
-                    // ダブルタップ検出時に虹色背景を適用
                     body.style.background = 'linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet)';
-                    body.style.backgroundColor = ''; // Clear solid background color
+                    body.style.backgroundColor = '';
                 }
                 lastTapTime = currentTime;
             });
         }
 
-        // ページが読み込まれたときに初期化
         updateTime();
-
-        // 1秒ごとに時間を更新
         setInterval(updateTime, 1000);
-
-        updateEventMessage();
         updateQuizQuestion();
     </script>
 </body>
