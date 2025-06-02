@@ -12,26 +12,27 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding-top: 50px; /* Adjusted for larger header font */
+            padding-top: 50px;
             background-color: #0d0d0d;
             transition: background-color 0.5s;
             text-align: center;
             font-family: 'Orbitron', sans-serif;
+            position: relative;
         }
 
         .header {
             display: flex;
             justify-content: space-between;
             width: 100%;
-            max-width: 600px; /* Limit header width for compactness */
-            margin: 0 auto; /* Center the header */
+            max-width: 600px;
+            margin: 0 auto;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            padding: 5px 10px; /* Reduced padding for tighter look */
+            padding: 5px 10px;
             color: #00ffcc;
-            font-size: 18px; /* Reverted to original font size */
+            font-size: 18px;
             background-color: rgba(0, 0, 0, 0.8);
             z-index: 1000;
         }
@@ -191,7 +192,6 @@
             font-size: 18px;
         }
 
-        /* Loading Screen Styles */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -258,7 +258,35 @@
             }
         }
 
-        /* Responsive adjustments */
+        .science-bg {
+            background: linear-gradient(45deg, #0a192f, #064e3b), radial-gradient(circle at center, rgba(0, 255, 204, 0.2) 0%, transparent 70%);
+            background-blend-mode: overlay;
+        }
+
+        .science-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 20%, rgba(0, 255, 204, 0.1) 2px, transparent 3px),
+                        radial-gradient(circle at 80% 80%, rgba(0, 255, 204, 0.1) 2px, transparent 3px),
+                        radial-gradient(circle at 50% 50%, rgba(0, 255, 204, 0.1) 2px, transparent 3px);
+            background-size: 100px 100px;
+            animation: particleFloat 10s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                background-position: 0 0, 0 0, 0 0;
+            }
+            100% {
+                background-position: 100px 100px, -100px -100px, 50px 50px;
+            }
+        }
+
         @media (max-width: 600px) {
             h1 {
                 font-size: 48px;
@@ -270,9 +298,9 @@
             }
 
             .header {
-                font-size: 16px; /* Reverted to original mobile font size */
-                padding: 5px 8px; /* Tighter padding for mobile */
-                max-width: 90%; /* Slightly narrower on mobile */
+                font-size: 16px;
+                padding: 5px 8px;
+                max-width: 90%;
             }
 
             .loading-text {
@@ -335,13 +363,13 @@
         let isRPressed = false;
         let isWPressed = false;
         let isEPressed = false;
+        let isHPressed = false;
+        let isAPressed = false;
         let lastTapTime = 0;
         const doubleTapDelay = 300;
 
-        // モバイルデバイス判定
         const isMobile = /Mobi|Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-        // ローディング画面を非表示にする
         window.addEventListener('load', () => {
             setTimeout(() => {
                 loadingScreen.classList.add('hidden');
@@ -352,6 +380,7 @@
         });
 
         bgColorSelect.addEventListener('change', function() {
+            body.classList.remove('science-bg');
             body.style.background = this.value;
             body.style.backgroundColor = this.value;
         });
@@ -392,25 +421,29 @@
             if (searchText === "HARUOMILABO") {
                 window.open("https://haruomilabo-home.amebaownd.com", "_blank");
                 errorMessage.style.display = 'none';
-            } else if (searchText === "一回転") {
+            } else if (searchText === "一回転" || searchText === "1回転") {
                 body.classList.add('rotate-animation');
                 setTimeout(() => {
                     body.classList.remove('rotate-animation');
                 }, 4000);
                 errorMessage.style.display = 'none';
             } else if (searchText === "赤") {
+                body.classList.remove('science-bg');
                 body.style.background = 'red';
                 body.style.backgroundColor = 'red';
                 errorMessage.style.display = 'none';
             } else if (searchText === "青") {
+                body.classList.remove('science-bg');
                 body.style.background = 'blue';
                 body.style.backgroundColor = 'blue';
                 errorMessage.style.display = 'none';
             } else if (searchText === "黒") {
+                body.classList.remove('science-bg');
                 body.style.background = 'black';
                 body.style.backgroundColor = 'black';
                 errorMessage.style.display = 'none';
             } else if (searchText === "白") {
+                body.classList.remove('science-bg');
                 body.style.background = 'white';
                 body.style.backgroundColor = 'white';
                 errorMessage.style.display = 'none';
@@ -467,15 +500,27 @@
                 isWPressed = true;
             } else if (event.key.toLowerCase() === 'e') {
                 isEPressed = true;
+            } else if (event.key.toLowerCase() === 'h') {
+                isHPressed = true;
+            } else if (event.key.toLowerCase() === 'a') {
+                isAPressed = true;
             }
 
             if (isQPressed && isRPressed) {
+                body.classList.remove('science-bg');
                 body.style.background = 'linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet)';
                 body.style.backgroundColor = '';
             }
 
             if (isWPressed && isEPressed) {
+                body.classList.remove('science-bg');
                 body.style.background = 'linear-gradient(45deg, #ff1493, #00ff00, #ffff00, #ff69b4)';
+                body.style.backgroundColor = '';
+            }
+
+            if (isHPressed && isAPressed) {
+                body.classList.add('science-bg');
+                body.style.background = '';
                 body.style.backgroundColor = '';
             }
         });
@@ -489,6 +534,10 @@
                 isWPressed = false;
             } else if (event.key.toLowerCase() === 'e') {
                 isEPressed = false;
+            } else if (event.key.toLowerCase() === 'h') {
+                isHPressed = false;
+            } else if (event.key.toLowerCase() === 'a') {
+                isAPressed = false;
             }
         });
 
@@ -496,6 +545,7 @@
             document.addEventListener('touchstart', function(event) {
                 const currentTime = new Date().getTime();
                 if (currentTime - lastTapTime < doubleTapDelay) {
+                    body.classList.remove('science-bg');
                     body.style.background = 'linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet)';
                     body.style.backgroundColor = '';
                 }
