@@ -252,6 +252,11 @@
         let isRPressed = false;
         let isWPressed = false;
         let isEPressed = false;
+        let lastTapTime = 0;
+        const doubleTapDelay = 300; // ダブルタップの最大間隔（ミリ秒）
+
+        // モバイルデバイスかどうかを判定
+        const isMobile = /Mobi|Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
         bgColorSelect.addEventListener('change', function() {
             body.style.background = this.value; // Reset to solid color, clearing any gradient
@@ -387,7 +392,7 @@
             timeDisplay.textContent = timeString;
         }
 
-        // キーダウンイベントでQとRの同時押しを検出（虹色背景）
+        // キーダウンイベントでQとR、WとEの同時押しを検出
         document.addEventListener('keydown', function(event) {
             if (event.key.toLowerCase() === 'q') {
                 isQPressed = true;
@@ -422,6 +427,19 @@
                 isEPressed = false;
             }
         });
+
+        // モバイルデバイスでのダブルタップ検出
+        if (isMobile) {
+            document.addEventListener('touchstart', function(event) {
+                const currentTime = new Date().getTime();
+                if (currentTime - lastTapTime < doubleTapDelay) {
+                    // ダブルタップ検出時に虹色背景を適用
+                    body.style.background = 'linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet)';
+                    body.style.backgroundColor = ''; // Clear solid background color
+                }
+                lastTapTime = currentTime;
+            });
+        }
 
         // ページが読み込まれたときに初期化
         updateTime();
