@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta name="google-site-verification" content="8WFk8C1JtaJFrKZgr6HkXhRAQE_pDTooR4MwgbLIDG0" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hoogle</title>
@@ -369,11 +368,17 @@
         let lastTapTime = 0;
         const doubleTapDelay = 300;
 
-        // Track background assignments for Q+R and H+A
         let qrBackground = 'linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet)';
         let haBackground = 'science-bg';
 
         const isMobile = /Mobi|Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        // Helper function to validate CSS color
+        function isValidColor(str) {
+            const s = new Option().style;
+            s.color = str;
+            return s.color !== '';
+        }
 
         window.addEventListener('load', () => {
             setTimeout(() => {
@@ -463,6 +468,11 @@
                 body.classList.remove('science-bg');
                 body.style.background = 'white';
                 body.style.backgroundColor = 'white';
+                errorMessage.style.display = 'none';
+            } else if (isValidColor(searchText)) {
+                body.classList.remove('science-bg');
+                body.style.background = searchText;
+                body.style.backgroundColor = searchText;
                 errorMessage.style.display = 'none';
             } else {
                 errorMessage.style.display = 'block';
